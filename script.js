@@ -4,13 +4,17 @@ function getComputerChoice() {
   return choices[randomNum];
 }
 
+function getPlayerChoice() {
+  return prompt("Choose your weapon: ");
+}
+
 function playRound(playerSelection, computerSelection) {
   playerSelection =
     playerSelection[0].toUpperCase() +
     playerSelection.substring(1).toLowerCase();
 
   if (playerSelection === computerSelection) {
-    return console.log(`Tie. Both players selected ${playerSelection}.`)
+    return console.log(`Tie. Both players selected ${playerSelection}.`);
   }
 
   if (playerSelection === "Rock") {
@@ -48,8 +52,7 @@ function winRound(playerSelection, computerSelection) {
 
 function game() {
   for (let i = 0; i < 5; i++) {
-    let playerSelection = prompt("Choose your weapon: ");
-    playRound(playerSelection, getComputerChoice());
+    playRound(getPlayerChoice(), getComputerChoice());
   }
 
   console.log(
