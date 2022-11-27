@@ -10,26 +10,53 @@ function playRound(playerSelection, computerSelection) {
     playerSelection.substring(1).toLowerCase();
 
   if (playerSelection === computerSelection) {
-    return `Tie. Both players selected ${playerSelection}.`;
+    return console.log(`Tie. Both players selected ${playerSelection}.`)
   }
 
   if (playerSelection === "Rock") {
     return computerSelection === "Paper"
-      ? `You lose. Computer's ${computerSelection} beat your ${playerSelection}.`
-      : `You win. Your ${playerSelection} beat computer's ${computerSelection}.`;
+      ? loseRound(playerSelection, computerSelection)
+      : winRound(playerSelection, computerSelection);
   }
 
   if (playerSelection === "Paper") {
     return computerSelection === "Scissors"
-      ? `You lose. Computer's ${computerSelection} beat your ${playerSelection}.`
-      : `You win. Your ${playerSelection} beat computer's ${computerSelection}.`;
+      ? loseRound(playerSelection, computerSelection)
+      : winRound(playerSelection, computerSelection);
   }
 
   if (playerSelection === "Scissors") {
     return computerSelection === "Rock"
-      ? `You lose. Computer's ${computerSelection} beat your ${playerSelection}.`
-      : `You win. Your ${playerSelection} beat computer's ${computerSelection}.`;
+      ? loseRound(playerSelection, computerSelection)
+      : winRound(playerSelection, computerSelection);
   }
 }
 
-console.log(playRound("ROCK", "Scissors"));
+function loseRound(playerSelection, computerSelection) {
+  console.log(
+    `You lose. Computer's ${computerSelection} beat your ${playerSelection}.`
+  );
+  computerScore++;
+}
+
+function winRound(playerSelection, computerSelection) {
+  console.log(
+    `You win. Your ${playerSelection} beat computer's ${computerSelection}.`
+  );
+  playerScore++;
+}
+
+function game() {
+  for (let i = 0; i < 5; i++) {
+    let playerSelection = prompt("Choose your weapon: ");
+    playRound(playerSelection, getComputerChoice());
+  }
+
+  console.log(
+    `Final Score:\nComputer: ${computerScore}\nPlayer: ${playerScore}`
+  );
+}
+
+let computerScore = 0;
+let playerScore = 0;
+game();
